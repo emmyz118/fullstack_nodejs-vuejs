@@ -31,7 +31,7 @@ const liste=ref()
 const error=ref(false)
 
 onMounted(async ()=>{
-    const res= await axios.get("http://localhost:4400/notes");
+    const res= await axios.get("https://fullstack-nodejs-vuejs.onrender.com/notes");
     if (res.data.error) {
         error.value=res.data.error
     }
@@ -39,7 +39,7 @@ onMounted(async ()=>{
 })
 const mess=ref(false)
 async function deleteNote(id){
-    const res= await axios.delete("http://localhost:4400/delete/"+id)
+    const res= await axios.delete("https://fullstack-nodejs-vuejs.onrender.com/delete/"+id)
     if (res.data.message) {
         mess.value=res.data.message
     }

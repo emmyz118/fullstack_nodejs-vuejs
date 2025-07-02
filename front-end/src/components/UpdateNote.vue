@@ -35,12 +35,12 @@ const rt=useRoute();
 const id=rt.params.nid;
 const result=ref(false)
 onMounted(async ()=>{
-    const res= await axios.get("http://localhost:4400/notes/id/"+id);
+    const res= await axios.get("https://fullstack-nodejs-vuejs.onrender.com/notes/id/"+id);
     title.value=res.data[0].title;
     descr.value=res.data[0].description
 })
 async function updateNote(){
-        const send= await axios.put("http://localhost:4400/update/",{id:id,title:title.value,description:descr.value});
+        const send= await axios.put("https://fullstack-nodejs-vuejs.onrender.com/update/",{id:id,title:title.value,description:descr.value});
         if (send.data.resp) {
             result.value=send.data.resp;
         }
