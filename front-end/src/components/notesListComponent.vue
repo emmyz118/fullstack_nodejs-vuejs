@@ -30,9 +30,9 @@ import axios from 'axios';
 import { onMounted, ref } from 'vue';
 const liste=ref()
 const error=ref(false)
-const isLoading=ref(false)
+let isLoading=ref(true)
 onMounted(async ()=>{
-    isLoading=true;
+    isLoading=false;
     const res= await axios.get("https://fullstack-nodejs-vuejs.onrender.com/notes");
     if (res.data.error) {
         error.value=res.data.error
