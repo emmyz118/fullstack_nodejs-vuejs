@@ -32,7 +32,7 @@ const title=ref("")
 const descr=ref("")
     const res=ref(false)
     async function createNote(){
-        const send= await axios.post("http://localhost:4400/create",{title:title.value,description:descr.value});
+        const send= await axios.post("https://fullstack-nodejs-vuejs.onrender.com/create",{title:title.value,description:descr.value});
         if (send.data.resp) {
             res.value=send.data.resp;
         }
