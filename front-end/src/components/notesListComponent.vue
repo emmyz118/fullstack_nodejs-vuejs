@@ -6,6 +6,7 @@
             <input type="text" placeholder="search....." class="form-control" v-model="search">
         </form>
         <p v-if="mess" class="text-danger">{{ mess }}</p>
+        <p v-if="isLoading">Wait...</p>
         <div class="row ">
             <div v-if="error">
                     {{ error }}
@@ -29,8 +30,9 @@ import axios from 'axios';
 import { onMounted, ref } from 'vue';
 const liste=ref()
 const error=ref(false)
-
+const isLoading=ref(false)
 onMounted(async ()=>{
+    isLoading=true;
     const res= await axios.get("https://fullstack-nodejs-vuejs.onrender.com/notes");
     if (res.data.error) {
         error.value=res.data.error
