@@ -6,7 +6,12 @@
             <input type="text" placeholder="search....." class="form-control" v-model="search">
         </form>
         <p v-if="mess" class="text-danger">{{ mess }}</p>
-        <p v-if="isLoading">Wait...</p>
+        <div v-if="isLoading" class="align-center mt-5" style="margin: auto;">
+            <center>
+                <img src="../../public/loading-load.gif" width="70px" height="70px" alt="">
+            </center>
+        </div>
+        
         <div class="row ">
             <div v-if="error">
                     {{ error }}

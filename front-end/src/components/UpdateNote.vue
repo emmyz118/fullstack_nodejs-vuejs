@@ -14,7 +14,8 @@
                         </div>
                     </div>
                     <div class="form-group row mt-3">
-                        <div class="offset-sm-2 col-sm-10">
+                        <p v-if="isLoading"><center>Wait..</center></p>
+                        <div class="offset-sm-2 col-sm-10" v-if="!isLoading">
                             <button type="submit" class="btn btn-primary">update</button>
                         </div>
 
@@ -34,7 +35,9 @@ const descr=ref();
 const rt=useRoute();
 const id=rt.params.nid;
 const result=ref(false)
+let isLoading=true
 onMounted(async ()=>{
+    isLoading=false
     const res= await axios.get("https://fullstack-nodejs-vuejs.onrender.com/notes/id/"+id);
     title.value=res.data[0].title;
     descr.value=res.data[0].description

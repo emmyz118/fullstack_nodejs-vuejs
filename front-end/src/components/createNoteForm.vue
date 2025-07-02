@@ -18,6 +18,7 @@
                             <button type="submit" class="btn btn-primary">Add</button>
                         </div>
                         <p v-if="res" class="text-danger">{{ res }}</p>
+                        <p v-if="isLoading">Wait ....</p>
                     </div>
                 </form>
         </div>
@@ -30,11 +31,14 @@ import axios from 'axios';
 import { ref } from 'vue';
 const title=ref("")
 const descr=ref("")
-    const res=ref(false)
-    async function createNote(){
+let isLoading=false
+const res=ref(false)
+async function createNote(){
+         isLoading=true
         const send= await axios.post("https://fullstack-nodejs-vuejs.onrender.com/create",{title:title.value,description:descr.value});
         if (send.data.resp) {
-            res.value=send.data.resp;
+            res.value= await send.data.resp;
+            isLoading=false
         }
     }
 </script>
